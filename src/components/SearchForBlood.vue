@@ -43,12 +43,14 @@ export default {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 5vh;
+  height: 10vh;
+  padding: 5vh 3vh 0;
+  box-sizing: border-box;
 }
 
 #wrap {
   width: 100%;
-  height: 87vh;
+  height: 90vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
