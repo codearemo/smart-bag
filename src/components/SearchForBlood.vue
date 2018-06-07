@@ -1,7 +1,7 @@
 <template>
   <div id="bg-div">
     <header>
-    <img src="../assets/logo.png" alt="Logo">
+    <img src="../assets/logo.png" alt="Logo" width="10%">
     <div>
       <button id="logout" v-on:click="userLogin">Login</button>
     </div>
