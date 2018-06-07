@@ -6,7 +6,7 @@
       </div>
       <h1>Welcome</h1>
       <p>Type the Smart Tag Number to Create New Blood Information</p>
-      <form v-on:submit.prevent="onSubmit">
+      <form>
         <input type="text" placeholder="Enter Smart Tag Number">
         <select name="" id="category">
           <option value="">Access Level</option>
@@ -21,11 +21,7 @@
 
 <script>
 export default {
-  methods: {
-    onSubmit () {
-      this.$router.push('/search-for-blood')
-    }
-  }
+  methods: {}
 }
 </script>
 

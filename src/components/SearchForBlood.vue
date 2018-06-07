@@ -3,7 +3,7 @@
     <header>
     <img src="../assets/logo.png" alt="Logo">
     <div>
-      <button id="logout">Logout</button>
+      <button id="logout" v-on:click="userLogin">Login</button>
     </div>
   </header>
   <div id="wrap">
@@ -23,7 +23,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    userLogin () {
+      this.$router.push('/signin')
+    }
+  }
+}
 </script>
 
 <style scoped>

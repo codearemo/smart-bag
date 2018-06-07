@@ -14,13 +14,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Signin',
-      component: SignIn
-    },
-    {
-      path: '/search-for-blood',
       name: 'search-for-blood',
       component: SearchForBlood
+    },
+    {
+      path: '/signin',
+      name: 'sign-in',
+      component: SignIn
     },
     {
       path: '/summary',
