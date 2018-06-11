@@ -1,7 +1,7 @@
 <template>
   <div id="bg-div">
     <header>
-    <img src="../assets/logo.png" alt="Logo" width="10%">
+    <img src="../assets/logo.png" alt="Logo" width="18%" height="50vh">
     <div>
       <button id="logout" v-on:click="userLogin">Login</button>
     </div>
@@ -93,8 +93,8 @@ form {
   position: absolute;
   color: rgba(0,0,0,0.2);
   font-size: 2em;
-  top: 8px;
-  left: 10px;
+  top: 18%;
+  left: 2%;
 }
 
 input {

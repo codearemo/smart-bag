@@ -7,6 +7,7 @@ import BloodBankSummary from '@/components/BloodBankSummary'
 import ScreeningCentreSummary from '@/components/ScreeningCentreSummary'
 import Supervisor from '@/components/Supervisor'
 import ManageUsers1 from '@/components/ManageUsers1'
+import ManageUsers3 from '@/components/ManageUsers3'
 
 Vue.use(Router)
 
@@ -44,8 +45,14 @@ export default new Router({
     },
     {
       path: '/manage-users1',
-      name: 'manage-users',
+      name: 'manage-users1',
       component: ManageUsers1
+    },
+    {
+      path: '/manage-users3',
+      name: 'manage-users3',
+      component: ManageUsers3
     }
-  ]
+  ],
+  mode: 'history'
 })

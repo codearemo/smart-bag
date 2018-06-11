@@ -120,15 +120,15 @@
     font-weight: bold;
   }
 
-    main > #bottom-info {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: #FAFAFA;
-    color: #000;
-    padding: 20px 30px;
-    margin: 50px auto 10vh;
-  }
+  main > #bottom-info {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #FAFAFA;
+  color: #000;
+  padding: 20px 30px;
+  margin: 50px auto 10vh;
+}
 
   #test-header {
     color: #B70303;
