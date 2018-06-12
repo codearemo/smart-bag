@@ -7,7 +7,6 @@
         <button>Change Details</button>
       </div>
       <div id="bottom-info">
-
         <p id="test-header">Screening Centre Details</p>
         <div>
           <div id="test-result">
@@ -77,6 +76,8 @@
                 <span class="remark">Safe</span>
               </div>
             </div>
+          <button id="accept_btn" style="background-color: #27AE60;">Accept</button>
+          <button id="reject_btn" style="background-color: #B70303;">Reject</button>
           </div>
         </div>
       </div>
@@ -112,7 +113,7 @@
     font-weight: bold;
   }
 
-    main > #bottom-info {
+  main > #bottom-info {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -194,6 +195,17 @@
     background-color: #27AE60;
     color: #fff;
     border-radius: 4px;
+  }
+
+  #accept_btn, #reject_btn {
+    padding: 15px 50px;
+    margin: 40px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-width: 0;
+    border-radius: 4px;
+    color: #fff;
   }
   @media screen and (max-width: 1000px) {
     main {

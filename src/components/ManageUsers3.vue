@@ -84,7 +84,7 @@
   input {
   width: 96%;
   font-size: 18px;
-  background-color: #FAFAF3;
+  background-color: #fff;
   font-family: 'Lato', sans-serif;
   font-style: regular;
   line-height: 31px;

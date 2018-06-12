@@ -27,6 +27,10 @@ export default {}
 </script>
 
 <style scoped>
+header {
+  height: 18vh;
+}
+
 #top-header {
   display: flex;
   background-color: #fff;
@@ -117,6 +121,7 @@ export default {}
   padding: 30px 50px;
   box-sizing: border-box;
   background-color: #FAFAFA;
+  height: 11vh;
 }
 
 h2 {
