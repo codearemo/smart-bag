@@ -2,35 +2,35 @@
   <div>
     <sb-header></sb-header>
     <main>
-      <h3>You are viewing the details of blood code 123456</h3>
+      <h3>You are viewing the details of blood code {{bagDetails.BagId}}</h3>
       <div id="top-info">
         <div id="test-details">
           <div id="bag-details">
             <p class="test-attribute">Date of Donation</p>
-            <p class="test-value">12 June, 2018</p>
+            <p class="test-value">6 June, 2018</p>
 
-            <p class="test-attribute">Donor Code</p>
-            <p class="test-value">123456712</p>
+            <!-- <p class="test-attribute">Donor Code</p>
+            <p class="test-value">123499</p> -->
 
             <p class="test-attribute">PVC</p>
-            <p class="test-value">10</p>
+            <p class="test-value">{{bagDetails.PVC}}</p>
           </div>
           <div id="donor-details">
             <p class="test-attribute">Blood Code</p>
-            <p class="test-value">123456</p>
+            <p class="test-value">{{bagDetails.BagId}}</p>
 
             <p class="test-attribute">Unique Blood Bank Code</p>
-            <p class="test-value">123456712</p>
+            <p class="test-value">{{bagDetails.owner | txt}}</p>
 
-            <p class="test-attribute">Unique Screening Centre Code</p>
-            <p class="test-value">A+</p>
+            <p class="test-attribute">Blood Type</p>
+            <p class="test-value">{{bagDetails.Btype}}</p>
 
-            <p class="test-attribute">Screener’s Name</p>
-            <p class="test-value">Muhammed Ali</p>
+            <!-- <p class="test-attribute">Screener’s Name</p>
+            <p class="test-value">Muhammed Ali</p> -->
           </div>
         </div>
         <div id="test-remark">
-          <p>Test Result</p><span class="remark">Safe</span>
+          <p>Test Result</p><span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.safety}}</span>
         </div>
       </div>
       <div id="bottom-info">
@@ -40,47 +40,48 @@
             <div>
               <p class="test-done">HIV</p>
               <div>
-                <span class="remark">Positive</span>
+                <span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.HIV}}</span>
               </div>
             </div>
             <div>
               <p class="test-done">Hepatitis B</p>
               <div>
-                <span class="remark">Positive</span>
+                <span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.HepatitisB}}</span>
               </div>
             </div>
             <div>
               <p class="test-done">Hepatitis C</p>
               <div>
-                <span class="remark">Positive</span>
+                <span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.Hepatitisc}}</span>
               </div>
             </div>
             <div>
               <p class="test-done">Syphillis</p>
               <div>
-                <span class="remark">Positive</span>
+                <span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.Spyhills}}</span>
               </div>
             </div>
             <div>
               <p class="test-done">HCV</p>
               <div>
-                <span class="remark">Positive</span>
+                <span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.HCV}}</span>
               </div>
             </div>
             <div>
               <p class="test-done">Test Result</p>
               <div>
-                <span class="remark">Safe</span>
+                <span class="remark" v-bind:class="{safe: safe, 'unsafe': unsafe}">{{bagDetails.safety}}</span>
               </div>
             </div>
             <div>
-              <p class="test-done">Supervisor Status</p>
+              <p class="test-done">Supervisor Note</p>
               <div>
-                <span class="remark" id="sup_remark">Accepted</span>
+                <!-- class="remark" id="sup_remark" -->
+                <span>{{bagDetails.Notes}}</span>
               </div>
             </div>
           </div>
-          <div id="remark-sticker">
+          <div id="remark-sticker" v-if="safe">
           </div>
         </div>
       </div>
@@ -89,7 +90,35 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      bagDetails: {},
+      safe: true,
+      unsafe: false
+    }
+  },
+  created () {
+    this.$http.get(`http://ec2-18-188-8-66.us-east-2.compute.amazonaws.com:3000/api/Bag/${this.$route.params.id}`)
+      .then(response => {
+        // console.log(response.body)
+      this.bagDetails = response.body
+      // console.log(this.bagDetails)
+      for (var test in this.bagDetails) {
+        console.log(this.bagDetails[test])
+          if (this.bagDetails[test] == 'Positive') {
+            this.safe = true
+            this.unsafe = false
+          }
+          else {
+            this.safe = false
+            this.unsafe = true
+          }
+        }
+    })
+  .catch(error => console.log(error))
+  }
+}
 </script>
 
 <style scoped>
@@ -131,14 +160,14 @@ export default {}
 
   #test-remark .remark {
     padding: 10px 50px;
-    background-color: #27AE60;
+    /* background-color: #27AE60; */
     color: #fff;
     border-radius: 4px;
   }
 
   .remark {
     padding: 1px 50px;
-    background-color: #27AE60;
+    /* background-color: #27AE60; */
     color: #fff;
     border-radius: 4px;
   }
@@ -154,6 +183,7 @@ export default {}
 
   #bottom-info > div {
     display: flex;
+    justify-content: space-between;
   }
 
   #test-result {
@@ -201,8 +231,16 @@ export default {}
     width: 60%;
     background-image: url("../assets/Tag.png");
     background-repeat: no-repeat;
-    background-position: center right;
+    background-position: center;
     background-size: 25em;
+  }
+
+  .unsafe {
+    background-color: #27AE60;
+  }
+
+  .safe {
+    background-color: #27AE60;
   }
 
   @media screen and (max-width: 1000px) {
@@ -233,21 +271,32 @@ export default {}
   }
   .remark {
     padding: 0 18px;
-    background-color: #27AE60;
+    /* background-color: #27AE60; */
     color: #fff;
     border-radius: 4px;
   }
   #remark-sticker {
-    display: none;
+    height: 35vh;
+    background-position: center;
   }
   #test-result {
-    width: 100%;
+    width: 55%;
   }
 }
 
 @media screen and (max-width: 700px) {
   #test-details {
     flex-direction: column;
+  }
+  #bottom-info > div {
+    flex-direction: column;
+  }
+    #test-result {
+    width: 100%;
+  }
+  #remark-sticker {
+    width: 100%;
+    background-position: center;
   }
 }
 </style>

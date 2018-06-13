@@ -25,7 +25,7 @@ export default new Router({
       component: SignIn
     },
     {
-      path: '/summary',
+      path: '/summary/:id',
       name: 'summary',
       component: Summary
     },

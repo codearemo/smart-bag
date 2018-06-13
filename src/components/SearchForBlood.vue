@@ -10,12 +10,12 @@
     <div id="center-hold">
       <h1>Innovative Smart Blood Transit System</h1>
       <p>SmartBag Tag is a blockchain powered product that helps patients and healthcare providers discover the safety record of blood</p>
-      <form>
+      <form v-on:submit.prevent="submitBloodBagCode">
         <div id="input-icon">
-          <input type="text" placeholder="Enter Smart Bag Number">
+          <input type="text" placeholder="Enter Smart Bag Number" v-model="bloodBagCode">
           <i class="fas fa-search"></i>
         </div>
-          <button id="submit" type="submit">Search</button>
+          <button id="submit" type="submit" v-bind:disabled="!validForm">Search</button>
       </form>
     </div>
   </div>
@@ -24,9 +24,22 @@
 
 <script>
 export default {
+  data () {
+    return {
+      bloodBagCode: ''
+    }
+  },
+  computed: {
+    validForm () {
+      return this.bloodBagCode !== ''
+    }
+  },
   methods: {
     userLogin () {
       this.$router.push('/signin')
+    },
+    submitBloodBagCode () {
+      this.$router.push(`/summary/${this.bloodBagCode}`)
     }
   }
 }
@@ -108,7 +121,7 @@ input {
   letter-spacing: 3%;
   border-radius: 4px;
   border: 2px solid #aaa;
-  padding-left: 50px;
+  padding-left: 55px;
 }
 
 input:focus {
